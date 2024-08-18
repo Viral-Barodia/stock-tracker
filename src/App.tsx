@@ -1,4 +1,4 @@
-import ChartComponent from "./Components/ChartComponent"
+import ChartComponent from "./Components/ChartComponent/ChartComponent"
 
 const App = () => {
   return (
