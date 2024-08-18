@@ -1,0 +1,63 @@
+@import '../../App.scss';
+
+.chart-component-body {
+    font-family: 'Circular Std', sans-serif;
+    .header-price {
+        .current-price {
+            color: $bs-black;
+            font-size: 70px;
+            font-weight: 400;
+            line-height: 88.56px;
+        }
+        .stock-change {
+            font-size: 18px;
+            font-weight: 400;
+            line-height: 22.77px;            
+        }
+        .positive-change {
+            color: $stock-increase;
+        }
+        .positive-change::before {
+            content: '+';
+        }
+        .negative-change {
+            color: $stock-decrease;
+        }
+        .currency {
+            color: $currency-color;
+            font-size: 24px;
+            font-weight: 400;
+            line-height: 30.36px;
+        }
+    }
+    .chart-options {
+        color: $inactive-color;
+        .viewing-options {
+            .viewing-options-items {
+                font-size: 18px;
+                font-weight: 400;
+                line-height: 22.77px;
+                &:hover {
+                    background-color: $active-color;
+                    color: $bs-white;
+                    cursor: pointer;
+                }
+            }
+        }
+        .interval-list {
+            list-style-type: none;
+            .interval-item {
+                color: $inactive-color;
+                &:hover {
+                    background-color: $active-color;
+                    color: $bs-white;
+                    cursor: pointer;
+                }
+            }
+            .active-interval {
+                background-color: $active-color;
+                color: $bs-white;
+            }
+        }
+    }
+}

@@ -1,0 +1,18 @@
+@import '../../App.scss';
+
+.menu-bar-list {
+    list-style-type: none;
+    padding: 0px;
+    font-family: 'Circular Std', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 22.77px;
+}
+.menu-link {
+    text-decoration: none;
+    color: $inactive-color;
+}
+.menu-link:hover {
+    cursor: pointer;
+    color: $bs-black;
+}
