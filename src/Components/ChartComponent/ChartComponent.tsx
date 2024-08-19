@@ -5,7 +5,9 @@ import {
     Area,
     CartesianGrid,
     Bar,
-    BarChart
+    BarChart,
+    Tooltip,
+    TooltipProps
 } from 'recharts';
 import { useEffect, useState } from 'react';
 import { fetchData } from '../../services/fetchData.service';
@@ -47,6 +49,19 @@ const ChartComponent = () => {
     }
     const headersList: string[] = ['Summary', 'Chart', 'Statistics', 'Analysis', 'Settings'];
     const rangeList: string[] = ['1d', '3d', '1w', '1mo', '6mo', '1y', 'max'];
+
+    const CustomTooltip = ({ active, payload }: TooltipProps<any,any>) => {
+        if (active && payload && payload.length) {
+            return (
+                <div className="px-2 bg-black">
+                    <p className="text-white">${payload[0].value.toFixed(2)}</p>
+                </div>
+            );
+        }
+    
+        return null;
+    };   
+
     return (
         <div className="chart-component-body m-auto w-75 d-flex flex-column mt-5">
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
@@ -80,7 +95,7 @@ const ChartComponent = () => {
                     </ul>
                 </div>
             </section>
-            <section className="graph">
+            <section className="graph position-relative">
                 <AreaChart width={1122} height={200} data={graphData}>
                     <defs>
                         <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
@@ -93,8 +108,14 @@ const ChartComponent = () => {
                         stroke="#4B40EE"
                         fill="url(#colorUv)" />
                     <CartesianGrid horizontal={false}/>
+                    <Tooltip content={<CustomTooltip />}/>
                 </AreaChart>
-                <BarChart width={839} height={50} data={graphData}>
+                {latestValue !== null && (
+                    <div className="position-absolute rounded p-1 custom-tooltip">
+                        {latestValue.toLocaleString()}
+                    </div>
+                )}
+                <BarChart width={1122} height={50} data={graphData} className="position-absolute">
                     <Bar dataKey="volumeValue" fill="#6F7177" />
                 </BarChart>
             </section>

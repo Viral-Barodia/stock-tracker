@@ -60,4 +60,12 @@
             }
         }
     }
+    .graph {
+        .custom-tooltip {
+            top: 16px;
+            right: -24px;
+            background-color: $active-color;
+            color: $bs-white;
+        }
+    }
 }
