@@ -21,7 +21,7 @@
                     color: $bs-black;
                 }
                 .menu-underline {
-                    height: 2px;
+                    height: 3px;
                     background-color: $inactive-color;
                     &.active-line {
                         background-color: $active-color;
@@ -32,8 +32,8 @@
     }
     .underline {
         background-color: $inactive-color;
-        height: 2px;
-        top: 31px;
+        height: 1px;
+        top: 32.5px;
         z-index: -1;
     }
 }

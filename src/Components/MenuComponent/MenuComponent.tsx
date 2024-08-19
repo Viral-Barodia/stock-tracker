@@ -22,7 +22,7 @@ const MenuComponent = ({ headers }: Props) => {
                         onClick={changeMenuItem}>
                         <a className={`menu-link ${activeMenu==header ? 'active-menu' : ''}`} href="">
                             {header}
-                            <div className={`menu-underline mt-2 ${activeMenu === header ? 'active-line' : ''}`}></div>
+                            { activeMenu==header && (<div className={`menu-underline mt-2 ${activeMenu === header ? 'active-line' : ''}`}></div>) }
                         </a>
                     </li>))}
             </ul>
