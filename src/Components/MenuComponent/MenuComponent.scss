@@ -7,12 +7,23 @@
     font-size: 18px;
     font-weight: 400;
     line-height: 22.77px;
-}
-.menu-link {
-    text-decoration: none;
     color: $inactive-color;
-}
-.menu-link:hover {
-    cursor: pointer;
-    color: $bs-black;
+    .menu-link {
+        text-decoration: none;
+        color: $inactive-color;
+        .active-menu {
+            color: $bs-black;
+        }
+        &:hover {
+            cursor: pointer;
+            color: $bs-black;
+        }
+    }
+    .menu-underline {
+        background-color: $inactive-color;
+        height: 2px;
+    }
+    .active-line {
+        background-color: $active-color;
+    }
 }
