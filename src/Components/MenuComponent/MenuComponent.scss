@@ -1,29 +1,39 @@
 @import '../../App.scss';
 
-.menu-bar-list {
-    list-style-type: none;
-    padding: 0px;
-    font-family: 'Circular Std', sans-serif;
-    font-size: 18px;
-    font-weight: 400;
-    line-height: 22.77px;
-    color: $inactive-color;
-    .menu-link {
-        text-decoration: none;
+.menu-bar {
+    .menu-bar-list {
+        list-style-type: none;
+        padding: 0px;
+        font-family: 'Circular Std', sans-serif;
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 22.77px;
         color: $inactive-color;
-        .active-menu {
-            color: $bs-black;
-        }
-        &:hover {
-            cursor: pointer;
-            color: $bs-black;
+        .menu-bar-item {
+            .menu-link {
+                text-decoration: none;
+                color: $inactive-color;
+                &.active-menu {
+                    color: $bs-black;
+                }
+                &:hover {
+                    cursor: pointer;
+                    color: $bs-black;
+                }
+                .menu-underline {
+                    height: 2px;
+                    background-color: $inactive-color;
+                    &.active-line {
+                        background-color: $active-color;
+                    }
+                }
+            }
         }
     }
-    .menu-underline {
+    .underline {
         background-color: $inactive-color;
         height: 2px;
-    }
-    .active-line {
-        background-color: $active-color;
+        top: 31px;
+        z-index: -1;
     }
 }

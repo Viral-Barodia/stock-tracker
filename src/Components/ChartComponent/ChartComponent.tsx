@@ -55,7 +55,7 @@ const ChartComponent = () => {
                     <div className="current-price">{latestValue}</div>
                     <div className={`stock-change ${Number(changeOverTime) >= 0 ? 'positive-change' : 'negative-change'}`}>{changeOverTime} ({changePercentage}%)</div>
                 </div>
-                <div className="currency">{currency}</div>
+                <div className="currency mt-3 ms-2">{currency}</div>
             </section>
             <MenuComponent headers={headersList} />
             <section className="chart-options align-items-center d-flex justify-content-between">
