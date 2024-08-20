@@ -53,8 +53,8 @@ const ChartComponent = () => {
     const CustomTooltip = ({ active, payload }: TooltipProps<any,any>) => {
         if (active && payload && payload.length) {
             return (
-                <div className="px-2 bg-black">
-                    <p className="text-white">${payload[0].value.toFixed(2)}</p>
+                <div className="px-2 bg-black rounded">
+                    <p className="text-white">{payload[0].value.toFixed(2)}</p>
                 </div>
             );
         }
@@ -62,7 +62,7 @@ const ChartComponent = () => {
         return null;
     };   
 
-    return (
+    return ( graphData &&
         <div className="chart-component-body m-auto w-75 d-flex flex-column mt-5">
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
             <section className="header-price d-flex mb-5">
