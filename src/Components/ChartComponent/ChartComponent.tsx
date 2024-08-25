@@ -14,18 +14,11 @@ import { fetchData } from '../../services/fetchData.service';
 import { FireErrorToast } from '../../services/fireToastService';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
-
-interface APIResponse {
-    graphData: any,
-    currency: string,
-    latestValue: number,
-    changeOverTime: number,
-    changePercentage: number
-}
+import { APIResponse, GraphDataObject } from '../../interfaces';
 
 const ChartComponent = () => {
     const [activeRange, setActiveRange] = useState<string>('1w');
-    const [graphData, setGraphData] = useState();
+    const [graphData, setGraphData] = useState<GraphDataObject[]>();
     const [currency, setCurrency] = useState<string>('USD');
     const [changeOverTime, setChangeOverTime] = useState<string>('');
     const [changePercentage, setChangePercentage] = useState<string>('');
@@ -33,11 +26,17 @@ const ChartComponent = () => {
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<boolean>(false);
 
+    /**
+     * Function for calling the service function to fetch API data for the given range
+     * @params range: string => The range over which we require the values of the stock
+     * @return null => Sets values in variables using useState
+    */
     const fetchDataForRange = async (range: string) => {
         setLoading(true);
         setError(false);
         try {
-            const data: APIResponse = await fetchData(range);
+            const data: APIResponse|null = await fetchData(range);
+            if(!data) throw new Error;
             setGraphData(data.graphData);
             setCurrency(data.currency);
             setLatestValue(data.latestValue.toFixed(2));
@@ -55,12 +54,23 @@ const ChartComponent = () => {
         fetchDataForRange(activeRange);
     }, [activeRange]);
 
+    /**
+     * Function for changing the desired range over which we are seeing values
+     * @params event: MouseEvent => The mouse event triggered when the user clicks on desired range button
+     * @return null => Sets value in activeRange variable using useState
+    */
     const changeRange = async (event: React.MouseEvent<HTMLElement>) => {
         setActiveRange(event.currentTarget.innerHTML);
     }
     const headersList: string[] = ['Summary', 'Chart', 'Statistics', 'Analysis', 'Settings'];
     const rangeList: string[] = ['1d', '3d', '1w', '1mo', '6mo', '1y', 'max'];
 
+    /**
+     * 
+     * @param active
+     * @param payload
+     * @renders a custom tooltip appears when the user hovers on the graph
+     */
     const CustomTooltip = ({ active, payload }: TooltipProps<any,any>) => {
         if (active && payload && payload.length) {
             return (
@@ -73,6 +83,9 @@ const ChartComponent = () => {
         return null;
     };   
 
+    /**
+     * Main function to render the chart component
+     */
     return (
         <div className="chart-component-body m-auto w-75 d-flex flex-column mt-5">
             { loading ? (

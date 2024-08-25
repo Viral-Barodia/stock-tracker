@@ -1,8 +1,14 @@
 import axios from 'axios';
 import { environment } from '../environment/environment';
 import { FireErrorToast } from './fireToastService';
+import { APIResponse } from '../interfaces';
 
-export const fetchData = async (range: string = '1mo'): Promise<any> => {
+/**
+ * Function to fetch data from the 3rd-party API 
+ * @param range string => The range over which the stock values will be fetched
+ * @returns An object of the type APIResponse containing relevant information to be displayed
+ */
+export const fetchData = async (range: string = '1mo'): Promise<APIResponse|null> => {
     let interval: string = '1d';
     if(range=='1d' || range=='3d' || range=='1w') {
         interval = '1m'

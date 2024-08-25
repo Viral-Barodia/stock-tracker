@@ -8,6 +8,12 @@ interface Props {
 const MenuComponent = ({ headers }: Props) => {
 
     const [activeMenu, setActiveMenu] = useState('Chart');
+
+    /**
+     * Function for changing the menu item
+     * @params event: MouseEvent => The mouse event triggered when the user clicks on desired menu button
+     * @return null => Sets value in activeMenu variable using useState
+    */
     const changeMenuItem = async (event: React.MouseEvent<HTMLElement>) => {
         event.preventDefault();
         setActiveMenu(event.currentTarget.innerText);
